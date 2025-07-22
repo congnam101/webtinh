@@ -1,2 +1,9 @@
-FROM nginx:alpine          # Dùng image nginx nhỏ nhẹ làm nền
-COPY . /usr/share/nginx/html  # Copy tất cả file trong thư mục hiện tại vào thư mục phục vụ web của nginx
+FROM nginx:alpine
+
+# Copy mã web vào thư mục gốc Nginx
+COPY ./app /usr/share/nginx/html
+
+# Copy cấu hình Nginx (tuỳ chọn)
+# COPY ./nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
