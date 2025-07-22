@@ -20,7 +20,7 @@ pipeline {
 
         stage('Check Site') {
             steps {
-                sh 'curl -I http://localhost:8080 || true'
+                sh 'curl -I http://localhost:9090 || true'
             }
         }
     }
