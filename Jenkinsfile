@@ -19,7 +19,7 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    sh 'docker run -d -p 8080:80 --name webtinh webtinh:latest'
+                    sh 'docker run -d -p 9090:80 --name webtinh webtinh:latest'
                 }
             }
         }
