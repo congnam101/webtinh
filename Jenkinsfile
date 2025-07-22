@@ -2,25 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone') {
-            steps {
-        git branch: 'main', url: 'https://github.com/congnam101/webtinh'
-            }
-        }
-
-        stage('Build Docker Image') {
+        stage('Build & Deploy') {
             steps {
                 script {
-                    sh 'docker build -t webtinh:latest .'
+                    // Dừng và xóa container cũ nếu có
+                    sh 'docker rm -f web_app || true'
+                    sh 'docker-compose down || true'
+
+                    // Build image mới
+                    sh 'docker-compose build'
+
+                    // Khởi động lại container
+                    sh 'docker-compose up -d'
                 }
             }
         }
 
-        stage('Run Container') {
+        stage('Check Site') {
             steps {
-                script {
-                    sh 'docker run -d -p 9090:80 --name webtinh webtinh:latest'
-                }
+                sh 'curl -I http://localhost:8080 || true'
             }
         }
     }
