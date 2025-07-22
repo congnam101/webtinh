@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  web_app:
+    build: .
+    container_name: web_app
+    ports:
+      - "9090:80"  # Trỏ cổng 9090 của máy host → cổng 80 trong container
