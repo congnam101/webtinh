@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/congnam101/webtinh'
+                git branch: 'main', url: 'https://github.com/congnam101/webtinh'
             }
         }
 
@@ -19,9 +19,10 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    dockerImage.run("-d -p 8080:80")
+                    dockerImage.run("-d -p 9090:80")
                 }
             }
         }
     }
 }
+
